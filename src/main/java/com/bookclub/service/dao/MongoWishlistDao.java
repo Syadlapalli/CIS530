@@ -1,7 +1,6 @@
 package com.bookclub.service.dao;
 
 import com.bookclub.model.WishlistItem;
-import com.bookclub.service.dao.WishlistDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -44,10 +43,8 @@ public class MongoWishlistDao implements WishlistDao {
   }
 
   @Override
-  public List<WishlistItem> list(String username) {
+  public List<WishlistItem> list(String key) {
     Query query = new Query();
-
-    query.addCriteria(Criteria.where("username").is(username));
 
     return mongoTemplate.find(query, WishlistItem.class);
   }
